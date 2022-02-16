@@ -1,0 +1,13 @@
+body {
+    background-color: #fffaea;
+}
+
+ul {
+    list-style-type: square;
+    list-style-position: outside;
+}
+
+ol {
+    list-style-type: decimal;
+    list-style-position: outside;
+}
