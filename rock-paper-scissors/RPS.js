@@ -1,5 +1,5 @@
 
-//Randomly select Rock, Paper, or Scissors
+//Computer randomly select Rock, Paper, or Scissors
 function computerPlay() {
     
     switch(Math.floor(Math.random() * 3)) {
@@ -38,19 +38,38 @@ function playerSelection() {
         
         default:
             alert("Invalid choice, please try again!");
-            playerSelection();
-            break;
+            return (playerSelection());
+            
     }
 
 }
 
-//Computer makes their choice
-function computerSelection() {
 
-}
+//Play one round - logic on which choice beats one. If a result returns '1' - increment Player point in game() function. If a result returns '-1' - increment Computer point in game().
+//If a result returns '0' - game is a tie and no one scores points.
+function playRound(playerSelection, computerSelection) {
 
-//Play one round - logic on which choice beats one
-function playRound() {
+    if (playerSelection == "rock") {
+        if (computerSelection == "scissors") {
+            alert(`Computer chose: ${computerSelection}. You win!`);
+            return 1;
+        }
+
+        else if (computerSelection == "paper") {
+            alert(`Computer chose: ${computerSelection}. You lose...`);
+            return -1;
+        }
+
+        else if (computerSelection == "rock") {
+            alert(`Computer chose: ${computerSelection}. It's a tie...!`);
+            return 0;
+        }
+
+        else {
+            alert("Something went wrong... Sorry, errors count as ties! It's totally a feature, not a bug.");
+            return 0;
+        }
+    }
 
 }
 
