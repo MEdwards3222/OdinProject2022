@@ -4,13 +4,13 @@ function computerPlay() {
     
     switch(Math.floor(Math.random() * 3)) {
         case 0:
-            choice = "Rock";
+            choice = "rock";
             break;
         case 1:
-            choice = "Paper";
+            choice = "paper";
             break;
         case 2:
-            choice = "Scissors";
+            choice = "scissors";
             break;
     }
 
@@ -145,7 +145,7 @@ let tie = 0;
             tie++;
         }
 
-        alert(`Current Score: \n\t Player Score: ${playerScore}\n\t Computer Score: ${comScore}\n\t Total Ties: ${tie}`);
+        alert(`Round ${i+1}\n Current Score: \n\t Player Score: ${playerScore}\n\t Computer Score: ${comScore}\n\t Total Ties: ${tie}`);
     }
 
     if (playerScore > comScore) {
