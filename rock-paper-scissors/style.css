@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    font-family: 'Roboto', sans-serif;
 }
 
 .mainPanel {
@@ -24,4 +25,10 @@ button {
 .RPS {
     display: flex;
     gap: 10px;
+}
+
+.score {
+    display: flex;
+    gap: 15px;
+    margin: 30px;
 }

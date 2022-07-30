@@ -118,7 +118,28 @@ function playRound(playerSelection, computerSelection) {
     return console.log("Play round failed to execute properly!");
 }
 
+//==========================Event Listeners=============================
 
+
+
+    let btn = document.querySelector("button");
+    let btns = Array.from(document.querySelectorAll("button"));
+
+    btns.forEach(btn => btn.addEventListener("mouseover", btnHoverOn, false));
+    btns.forEach(btn => btn.addEventListener("mouseout", btnHoverOff, false));
+
+    //btn.addEventListener("mouseover", btnHoverOn, false);
+    //btn.addEventListener("mouseout", btnHoverOff, false);
+
+    function btnHoverOn(e) {
+        e.target.setAttribute("style", "background-color: rgb(58, 129, 68);");
+    }
+
+    function btnHoverOff(e) {
+        e.target.setAttribute("style", "background-color: rgb(68, 139, 68);");
+    }
+
+//==========================Event Listeners=============================
 
 //=====================TO REMOVE========================================
 
