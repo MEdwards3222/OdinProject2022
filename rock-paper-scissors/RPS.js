@@ -128,8 +128,6 @@ function playRound(playerSelection, computerSelection) {
     btns.forEach(btn => btn.addEventListener("mouseover", btnHoverOn, false));
     btns.forEach(btn => btn.addEventListener("mouseout", btnHoverOff, false));
 
-    //btn.addEventListener("mouseover", btnHoverOn, false);
-    //btn.addEventListener("mouseout", btnHoverOff, false);
 
     function btnHoverOn(e) {
         e.target.setAttribute("style", "background-color: rgb(58, 129, 68);");
