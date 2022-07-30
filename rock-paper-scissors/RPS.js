@@ -118,8 +118,12 @@ function playRound(playerSelection, computerSelection) {
     return console.log("Play round failed to execute properly!");
 }
 
+
+
+//=====================TO REMOVE========================================
+
 //Create a game - a game consists of 5 rounds. Whoever has the highest score wins.
-function game() {
+/*function game() {
 let playerScore = 0;
 let comScore = 0;
 let tie = 0;
@@ -167,4 +171,6 @@ let tie = 0;
     }
 }
 
-game();
+game(); */
+
+//=====================TO REMOVE========================================
