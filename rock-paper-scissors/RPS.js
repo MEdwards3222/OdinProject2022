@@ -124,9 +124,15 @@ function playRound(playerSelection, computerSelection) {
 
     let btn = document.querySelector("button");
     let btns = Array.from(document.querySelectorAll("button"));
+    const rock = document.getElementById("rock");
+    const paper = document.getElementById("paper");
+    const scissors = document.getElementById("scissors");
 
     btns.forEach(btn => btn.addEventListener("mouseover", btnHoverOn, false));
     btns.forEach(btn => btn.addEventListener("mouseout", btnHoverOff, false));
+    rock.addEventListener("click", selectRock, false);
+    paper.addEventListener("click", selectPaper);
+    scissors.addEventListener("click", selectScissors);
 
 
     function btnHoverOn(e) {
@@ -136,6 +142,20 @@ function playRound(playerSelection, computerSelection) {
     function btnHoverOff(e) {
         e.target.setAttribute("style", "background-color: rgb(68, 139, 68);");
     }
+
+    function selectRock(e) {
+        return console.log("Rock!");
+    }
+
+    function selectPaper(e) {
+        return console.log("Paper!");
+    }
+
+    function selectScissors(e) {
+        return console.log("Scissors!");
+    }
+
+
 
 //==========================Event Listeners=============================
 
