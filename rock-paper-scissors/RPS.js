@@ -1,20 +1,7 @@
 
 //Computer randomly select Rock, Paper, or Scissors
 function computerPlay() {
-    
-    switch(Math.floor(Math.random() * 3)) {
-        case 0:
-            choice = "rock";
-            break;
-        case 1:
-            choice = "paper";
-            break;
-        case 2:
-            choice = "scissors";
-            break;
-    }
-
-    return choice;
+    return ['paper','rock','scissors'][Math.floor(Math.random()*3)];
 };
 
 
@@ -51,17 +38,14 @@ function playRound(playerSelection, computerSelection) {
 
     if (playerSelection == "rock") {
         if (computerSelection == "scissors") {
-            alert(`Computer chose: ${computerSelection}. You win!`);
             return 1;
         }
 
         else if (computerSelection == "paper") {
-            alert(`Computer chose: ${computerSelection}. You lose...`);
             return -1;
         }
 
         else if (computerSelection == "rock") {
-            alert(`Computer chose: ${computerSelection}. It's a tie...!`);
             return 0;
         }
 
@@ -73,17 +57,14 @@ function playRound(playerSelection, computerSelection) {
 
     if (playerSelection == "paper") {
         if (computerSelection == "rock") {
-            alert(`Computer chose: ${computerSelection}. You win!`);
             return 1;
         }
 
         else if (computerSelection == "scissors") {
-            alert(`Computer chose: ${computerSelection}. You lose...`);
             return -1;
         }
 
         else if (computerSelection == "paper") {
-            alert(`Computer chose: ${computerSelection}. It's a tie...!`);
             return 0;
         }
 
@@ -95,17 +76,14 @@ function playRound(playerSelection, computerSelection) {
 
     if (playerSelection == "scissors") {
         if (computerSelection == "paper") {
-            alert(`Computer chose: ${computerSelection}. You win!`);
             return 1;
         }
 
         else if (computerSelection == "rock") {
-            alert(`Computer chose: ${computerSelection}. You lose...`);
             return -1;
         }
 
         else if (computerSelection == "scissors") {
-            alert(`Computer chose: ${computerSelection}. It's a tie...!`);
             return 0;
         }
 
@@ -122,11 +100,19 @@ function playRound(playerSelection, computerSelection) {
 
 
 
-    let btn = document.querySelector("button");
-    let btns = Array.from(document.querySelectorAll("button"));
+    const btn = document.querySelector("button");
+    const btns = Array.from(document.querySelectorAll("button"));
     const rock = document.getElementById("rock");
     const paper = document.getElementById("paper");
     const scissors = document.getElementById("scissors");
+    const results = document.querySelector(".results");
+    const score = document.querySelector(".score");
+
+    let playerScore = 0;
+    let comScore = 0;
+
+    
+
 
     btns.forEach(btn => btn.addEventListener("mouseover", btnHoverOn, false));
     btns.forEach(btn => btn.addEventListener("mouseout", btnHoverOff, false));
@@ -134,6 +120,7 @@ function playRound(playerSelection, computerSelection) {
     paper.addEventListener("click", selectPaper);
     scissors.addEventListener("click", selectScissors);
 
+    score.textContent = `Player Score: ${playerScore} | Computer Score: ${comScore}`;
 
     function btnHoverOn(e) {
         e.target.setAttribute("style", "background-color: rgb(58, 129, 68);");
@@ -144,15 +131,62 @@ function playRound(playerSelection, computerSelection) {
     }
 
     function selectRock(e) {
-        return console.log("Rock!");
+        let result = playRound("rock", computerPlay());
+        switch(result) {
+            case 1:
+                results.textContent = "You chose Rock! Computer chose Scissors! You win!"
+                playerScore++;
+                break;
+            case -1:
+                results.textContent = "You chose Rock! Computer chose Paper! You lose..."
+                comScore++;
+                break;
+            case 0:
+                results.textContent = "You chose Rock! Computer chose Rock! It's a tie!"
+
+        }
+
+        score.textContent = `Player Score: ${playerScore} | Computer Score: ${comScore}`;
     }
 
     function selectPaper(e) {
-        return console.log("Paper!");
+        let result = playRound("paper", computerPlay());
+        switch(result) {
+            case 1:
+                results.textContent = "You chose Paper! Computer chose Rock! You win!"
+                playerScore++;
+                break;
+            case -1:
+                results.textContent = "You chose Paper! Computer chose Scissors! You lose..."
+                comScore++;
+                break;
+            case 0:
+                results.textContent = "You chose Paper! Computer chose Paper! It's a tie!"
+
+        }
+
+        score.textContent = `Player Score: ${playerScore} | Computer Score: ${comScore}`;
     }
 
     function selectScissors(e) {
-        return console.log("Scissors!");
+       let result = playRound("scissors", computerPlay());
+
+       switch(result) {
+        case 1:
+            results.textContent = "You chose Scissors! Computer chose Paper! You win!"
+            playerScore++;
+            break;
+        case -1:
+            results.textContent = "You chose Scissors! Computer chose Rock! You lose..."
+            comScore++;
+            break;
+        case 0:
+            results.textContent = "You chose Scissors! Computer chose Scissors! It's a tie!"
+
+        }
+
+        score.textContent = `Player Score: ${playerScore} | Computer Score: ${comScore}`;
+
     }
 
 
