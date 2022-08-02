@@ -108,6 +108,9 @@ function playRound(playerSelection, computerSelection) {
     const results = document.querySelector(".results");
     const score = document.querySelector(".score");
     const mainText = document.querySelector("h1");
+    const mainPanel = document.querySelector(".mainPanel");
+    
+
 
     let playerScore = 0;
     let comScore = 0;
@@ -115,9 +118,15 @@ function playRound(playerSelection, computerSelection) {
     
 
     
-    rock.addEventListener("click", selectRock, false);
+    rock.addEventListener("click", selectRock);
     paper.addEventListener("click", selectPaper);
     scissors.addEventListener("click", selectScissors);
+
+    for(let i = 0; i < btns.length; i++){
+        btns[i].addEventListener("click", declareWinner);
+    }
+    
+    
 
     score.textContent = `Player Score: ${playerScore} | Computer Score: ${comScore}`;
 
@@ -192,28 +201,42 @@ function disableUI() {
 function tryAgain() {
     tryText = document.createElement("div");
     tryBtn = document.createElement("button");
+    
+    div = document.createElement("div");
 
     tryText.textContent = "Please click here to try again!";
     tryBtn.textContent = "Try Again";
+    results.textContent = "";
 
+    mainPanel.appendChild(div);
     score.appendChild(tryText);
-    results.appendChild(tryBtn);
+    div.appendChild(tryBtn);
+
+    tryBtn.addEventListener("click", () => document.location.reload(), false);
+
+    
 
 }
 
 function declareWinner() {
-    if(playerScore == 5){
-        disableUI();
+    if(playerScore >= 5){
+        postGame();
         mainText.textContent = "You Win!"
     }
-    else if (comScore == 5){
-        disableUI
+    else if (comScore >= 5){
+        postGame();
         mainText.textContent = "You lose..."
     }
-    else
-    return 0;
+    else return 0;
+   
 }
 
+function postGame() {
+    disableUI();
+    tryAgain();
+
+    
+}
 
 //=====================TO REMOVE========================================
 
