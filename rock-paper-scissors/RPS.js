@@ -107,28 +107,21 @@ function playRound(playerSelection, computerSelection) {
     const scissors = document.getElementById("scissors");
     const results = document.querySelector(".results");
     const score = document.querySelector(".score");
+    const mainText = document.querySelector("h1");
 
     let playerScore = 0;
     let comScore = 0;
 
     
 
-
-    btns.forEach(btn => btn.addEventListener("mouseover", btnHoverOn, false));
-    btns.forEach(btn => btn.addEventListener("mouseout", btnHoverOff, false));
+    
     rock.addEventListener("click", selectRock, false);
     paper.addEventListener("click", selectPaper);
     scissors.addEventListener("click", selectScissors);
 
     score.textContent = `Player Score: ${playerScore} | Computer Score: ${comScore}`;
 
-    function btnHoverOn(e) {
-        e.target.setAttribute("style", "background-color: rgb(58, 129, 68);");
-    }
-
-    function btnHoverOff(e) {
-        e.target.setAttribute("style", "background-color: rgb(68, 139, 68);");
-    }
+   
 
     function selectRock(e) {
         let result = playRound("rock", computerPlay());
@@ -189,9 +182,38 @@ function playRound(playerSelection, computerSelection) {
 
     }
 
-
-
 //==========================Event Listeners=============================
+
+function disableUI() {
+    btns.forEach(btn => btn.setAttribute("hidden", true));
+    score.textContent = "";
+}
+
+function tryAgain() {
+    tryText = document.createElement("div");
+    tryBtn = document.createElement("button");
+
+    tryText.textContent = "Please click here to try again!";
+    tryBtn.textContent = "Try Again";
+
+    score.appendChild(tryText);
+    results.appendChild(tryBtn);
+
+}
+
+function declareWinner() {
+    if(playerScore == 5){
+        disableUI();
+        mainText.textContent = "You Win!"
+    }
+    else if (comScore == 5){
+        disableUI
+        mainText.textContent = "You lose..."
+    }
+    else
+    return 0;
+}
+
 
 //=====================TO REMOVE========================================
 
