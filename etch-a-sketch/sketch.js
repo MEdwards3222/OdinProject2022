@@ -1,14 +1,18 @@
 const gridContainer = document.querySelector("#gridContainer");
 const resetButton = document.querySelector("#reset-button");
+const clearButton = document.querySelector("#clear-button");
 
 window.addEventListener("load", setDefaultGrid);
 resetButton.addEventListener("click", changeSize);
+clearButton.addEventListener("click", resetGrid);
+
+let currentSize = 16;
 
 
 
 function setDefaultGrid() {
-    setGridSize(16);
-    fillGrid(16);
+    setGridSize(currentSize);
+    fillGrid(currentSize);
 }
 
 function setGridSize(size) {
@@ -32,21 +36,26 @@ function changeSize() {
     let newSize = prompt("Enter new size.")
 
     if(newSize !== null) {
-        newSize = parseInt(newSize);
-        if(newSize < 1 || newSize > 64 || Number.isNaN(newSize)) {
+        currentSize = parseInt(newSize);
+        if(currentSize < 1 || currentSize > 64 || Number.isNaN(currentSize)) {
             alert("Please enter a number from 1 - 64 range.");
             changeSize();
         } else {
             clearGrid();
-            setGridSize(newSize);
-            fillGrid(newSize);
+            setGridSize(currentSize);
+            fillGrid(currentSize);
         }
     }
 }
 
-function clearGrid() {
+function clearGrid() { //Utility function for change size
     const gridArray = Array.from(gridContainer.childNodes);
     gridArray.forEach((element) => {
         gridContainer.removeChild(element);
     });
+}
+
+function resetGrid() { //Bound to "Clear Grid" HTML button
+    clearGrid();
+    fillGrid(currentSize);
 }
