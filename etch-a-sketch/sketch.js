@@ -29,7 +29,7 @@ function fillGrid(size) {
 }
 
 function changeColor(e) {
-    e.target.style.backgroundColor = "black";
+    e.target.style.backgroundColor = `black`;
 }
 
 function changeSize() {
@@ -37,8 +37,8 @@ function changeSize() {
 
     if(newSize !== null) {
         currentSize = parseInt(newSize);
-        if(currentSize < 1 || currentSize > 64 || Number.isNaN(currentSize)) {
-            alert("Please enter a number from 1 - 64 range.");
+        if(currentSize < 1 || currentSize > 100 || Number.isNaN(currentSize)) {
+            alert("Please enter a number from 1 - 100 range.");
             changeSize();
         } else {
             clearGrid();
@@ -59,3 +59,4 @@ function resetGrid() { //Bound to "Clear Grid" HTML button
     clearGrid();
     fillGrid(currentSize);
 }
+
