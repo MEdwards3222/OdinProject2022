@@ -18,6 +18,10 @@ let nineBtn = document.getElementById('057Button');
 let clearBtn = document.getElementById('clearButton');
 let eraseBtn = document.getElementById('eraseButton');
 let addBtn = document.getElementById('additionButton');
+let subBtn = document.getElementById('subtractionButton');
+let mulBtn = document.getElementById('multiplicationButton');
+let divBtn = document.getElementById('divisionButton');
+let eqlBtn = document.getElementById('executeButton');
 
 function add(num1, num2) {
     return num1 + num2;
@@ -39,26 +43,33 @@ function operate(operator, num1, num2) {
     switch(operator) {
         case "Sum":
             return add(num1, num2);
-            break;
+            
         
         case "Diff":
-            return subtract(num1, num2)
-            break;
+            return subtract(num1, num2);
+            
         
         case "Prod":
             return multiply(num1, num2);
-            break;
+            
 
         case "Div":
             return divide(num1, num2);
-            break;
+            
     }
 }
 
-function clear() {
-    displayTotal = " ";
+function clearDisplay() {
+    displayTotal = "0";
     calcDisplay.textContent = 0;
 }
+
+function clearAll() {
+    displayTotal = "0";
+    calcDisplay.textContent = 0;
+    runningTotal = 0;
+}
+
 
 function backspace() {
 
@@ -73,68 +84,167 @@ function displayValue(result) {
 }
 
 //===================Event Listeners=====================
-clearBtn.addEventListener("click", () => clear());
+clearBtn.addEventListener("click", () => clearAll());
 eraseBtn.addEventListener("click", function () {
+    if(displayTotal.length <= 1 ){
+        clearDisplay();
+        return calcDisplay.textContent = displayTotal;
+    }
     displayTotal = displayTotal.slice(0, -1);
     calcDisplay.textContent = displayTotal;
 });
 
 oneBtn.addEventListener("click", function () {
+    if(displayTotal == "0" || displayTotal == 0){
+        displayTotal = "1";
+        return calcDisplay.textContent = displayTotal;
+    }
+
     displayTotal += "1";
     calcDisplay.textContent = displayTotal;
 });
 
 twoBtn.addEventListener("click", function () {
+    if(displayTotal == "0" || displayTotal == 0){
+        displayTotal = "2";
+        return calcDisplay.textContent = displayTotal;
+    }
+
     displayTotal += "2";
     calcDisplay.textContent = displayTotal;
 });
 
 threeBtn.addEventListener("click", function () {
+    if(displayTotal == "0" || displayTotal == 0){
+        displayTotal = "3";
+        return calcDisplay.textContent = displayTotal;
+    }
     displayTotal += "3";
     calcDisplay.textContent = displayTotal;
 });
 
 fourBtn.addEventListener("click", function () {
+    if(displayTotal == "0" || displayTotal == 0){
+        displayTotal = "4";
+        return calcDisplay.textContent = displayTotal;
+    }
     displayTotal += "4";
     calcDisplay.textContent = displayTotal;
 });
 
 fiveBtn.addEventListener("click", function () {
+    if(displayTotal == "0" || displayTotal == 0){
+        displayTotal = "5";
+        return calcDisplay.textContent = displayTotal;
+    }
     displayTotal += "5";
     calcDisplay.textContent = displayTotal;
 });
 
 sixBtn.addEventListener("click", function () {
+    if(displayTotal == "0" || displayTotal == 0){
+        displayTotal = "6";
+        return calcDisplay.textContent = displayTotal;
+    }
     displayTotal += "6";
     calcDisplay.textContent = displayTotal;
 });
 
 sevenBtn.addEventListener("click", function () {
+    if(displayTotal == "0" || displayTotal == 0){
+        displayTotal = "7";
+        return calcDisplay.textContent = displayTotal;
+    }
     displayTotal += "7";
     calcDisplay.textContent = displayTotal;
 });
 
 eightBtn.addEventListener("click", function () {
+    if(displayTotal == "0" || displayTotal == 0){
+        displayTotal = "8";
+        return calcDisplay.textContent = displayTotal;
+    }
     displayTotal += "8";
     calcDisplay.textContent = displayTotal;
 });
 
 nineBtn.addEventListener("click", function () {
+    if(displayTotal == "0" || displayTotal == 0){
+        displayTotal = "9";
+        return calcDisplay.textContent = displayTotal;
+    }
     displayTotal += "9";
     calcDisplay.textContent = displayTotal;
 });
 
 zeroBtn.addEventListener("click", function () {
+    if(displayTotal == "0" || displayTotal == 0){
+        displayTotal = "0";
+        return calcDisplay.textContent = displayTotal;
+    }
     displayTotal += "0";
     calcDisplay.textContent = displayTotal;
 });
 
 
 addBtn.addEventListener("click", function () {
-    let parsedTotal = parseInt(displayTotal, 10);
+    let parsedTotal = parseFloat(displayTotal);
     operator = "Sum";
     runningTotal = operate(operator, runningTotal, parsedTotal);
-    displayTotal = runningTotal;
-    calcDisplay.textContent = displayTotal;
+    clearDisplay();
+    calcDisplay.textContent = runningTotal;
 });
+
+eqlBtn.addEventListener("click", () => {
+    let parsedTotal = parseFloat(displayTotal);
+    runningTotal = operate(operator, runningTotal, parsedTotal);
+    clearDisplay();
+    calcDisplay.textContent = runningTotal;
+});
+
+subBtn.addEventListener("click", () => {
+    let parsedTotal = parseFloat(displayTotal);
+    operator = "Diff";
+
+    if(runningTotal == 0) {
+        runningTotal = operate(operator, parsedTotal, runningTotal);
+        clearDisplay();
+        calcDisplay.textContent = runningTotal;
+    } else {
+        runningTotal = operate(operator, runningTotal, parsedTotal);
+        clearDisplay();
+        calcDisplay.textContent = runningTotal;
+    }
+});
+
+mulBtn.addEventListener("click", () => { //TODO - bug after hitting equal key
+    let parsedTotal = parseFloat(displayTotal);
+    operator = "Prod";
+
+    if(runningTotal == 0){
+        runningTotal = operate(operator, 1, parsedTotal);
+        clearDisplay();
+        calcDisplay.textContent = runningTotal;
+    } else {
+        runningTotal = operate(operator, runningTotal, parsedTotal);
+        clearDisplay();
+        calcDisplay.textContent = runningTotal;
+    }
+});
+
+divBtn.addEventListener("click", () => { //TODO - Infinity bug
+    let parsedTotal = parseFloat(displayTotal);
+    operator = "Div";
+
+    if(runningTotal == 0){
+        runningTotal = operate(operator, parsedTotal, 1);
+        clearDisplay();
+        calcDisplay.textContent = runningTotal;
+    } else {
+        runningTotal = operate(operator, parsedTotal, runningTotal);
+        clearDisplay();
+        calcDisplay.textContent = runningTotal;
+    }
+});
+
 //===================Event Listeners=====================
