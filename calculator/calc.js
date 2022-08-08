@@ -2,6 +2,7 @@ let calcContainer = document.querySelector('.calculator');
 let calcDisplay = document.querySelector('#display');
 let displayTotal = " ";
 let runningTotal = 0;
+let temp = 0;
 let operator = " ";
 let btn = document.querySelector('.Buttons');
 
@@ -68,8 +69,12 @@ function clearAll() {
     displayTotal = "0";
     calcDisplay.textContent = 0;
     runningTotal = 0;
+    temp = 0;
 }
 
+function clearTemp() {
+    temp = 0;
+}
 
 function backspace() {
 
@@ -188,63 +193,37 @@ zeroBtn.addEventListener("click", function () {
 
 
 addBtn.addEventListener("click", function () {
-    let parsedTotal = parseFloat(displayTotal);
+    temp = parseFloat(displayTotal);
     operator = "Sum";
-    runningTotal = operate(operator, runningTotal, parsedTotal);
+    runningTotal = operate(operator, runningTotal, temp);
     clearDisplay();
     calcDisplay.textContent = runningTotal;
 });
 
 eqlBtn.addEventListener("click", () => {
-    let parsedTotal = parseFloat(displayTotal);
-    runningTotal = operate(operator, runningTotal, parsedTotal);
+    temp = parseFloat(displayTotal);
+    runningTotal = operate(operator, runningTotal, temp);
     clearDisplay();
     calcDisplay.textContent = runningTotal;
 });
 
-subBtn.addEventListener("click", () => {
-    let parsedTotal = parseFloat(displayTotal);
+subBtn.addEventListener("click", () => { 
+    temp = parseFloat(displayTotal);
     operator = "Diff";
-
-    if(runningTotal == 0) {
-        runningTotal = operate(operator, parsedTotal, runningTotal);
+    if (runningTotal == 0) { 
+        runningTotal = operate(operator, temp, 0);
         clearDisplay();
         calcDisplay.textContent = runningTotal;
     } else {
-        runningTotal = operate(operator, runningTotal, parsedTotal);
+        runningTotal = operate(operator, runningTotal, temp);
         clearDisplay();
         calcDisplay.textContent = runningTotal;
     }
+
 });
 
-mulBtn.addEventListener("click", () => { //TODO - bug after hitting equal key
-    let parsedTotal = parseFloat(displayTotal);
-    operator = "Prod";
 
-    if(runningTotal == 0){
-        runningTotal = operate(operator, 1, parsedTotal);
-        clearDisplay();
-        calcDisplay.textContent = runningTotal;
-    } else {
-        runningTotal = operate(operator, runningTotal, parsedTotal);
-        clearDisplay();
-        calcDisplay.textContent = runningTotal;
-    }
-});
 
-divBtn.addEventListener("click", () => { //TODO - Infinity bug
-    let parsedTotal = parseFloat(displayTotal);
-    operator = "Div";
 
-    if(runningTotal == 0){
-        runningTotal = operate(operator, parsedTotal, 1);
-        clearDisplay();
-        calcDisplay.textContent = runningTotal;
-    } else {
-        runningTotal = operate(operator, parsedTotal, runningTotal);
-        clearDisplay();
-        calcDisplay.textContent = runningTotal;
-    }
-});
 
 //===================Event Listeners=====================
