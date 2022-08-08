@@ -222,8 +222,45 @@ subBtn.addEventListener("click", () => {
 
 });
 
+mulBtn.addEventListener("click", () => {
+    
+    
+    if(runningTotal == 0 && displayTotal != 0) {
+        temp = parseFloat(displayTotal);
+        operator = "Prod";
+        runningTotal = operate(operator, temp, 1);
+        clearDisplay();
+        clearTemp();
+        calcDisplay.textContent = runningTotal;
+    } else if (runningTotal != 0 && displayTotal == 0){
+        calcDisplay.textContent = runningTotal;
+    } else {
+        temp = calcDisplay.textContent;
+        operator = "Prod";
+        runningTotal = operate(operator, runningTotal, temp);
+        clearDisplay();
+        clearTemp();
+        calcDisplay.textContent = runningTotal;
+    }
+});
 
-
-
-
+divBtn.addEventListener("click", () => {
+    if(runningTotal == 0 && displayTotal != 0) {
+        temp = parseFloat(displayTotal);
+        operator = "Div";
+        runningTotal = operate(operator, temp, 1);
+        clearDisplay();
+        clearTemp();
+        calcDisplay.textContent = runningTotal;
+    } else if (runningTotal != 0 && displayTotal == 0){
+        calcDisplay.textContent = runningTotal;
+    } else {
+        temp = calcDisplay.textContent;
+        operator = "Div";
+        runningTotal = operate(operator, runningTotal, temp);
+        clearDisplay();
+        clearTemp();
+        calcDisplay.textContent = runningTotal;
+    }
+});
 //===================Event Listeners=====================
