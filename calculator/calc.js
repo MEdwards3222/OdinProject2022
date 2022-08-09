@@ -5,6 +5,7 @@ let runningTotal = 0;
 let temp = 0;
 let operator = " ";
 let btn = document.querySelector('.Buttons');
+let decimalFlag = false;
 
 let zeroBtn = document.getElementById('048Button');
 let oneBtn = document.getElementById('049Button');
@@ -23,6 +24,7 @@ let subBtn = document.getElementById('subtractionButton');
 let mulBtn = document.getElementById('multiplicationButton');
 let divBtn = document.getElementById('divisionButton');
 let eqlBtn = document.getElementById('executeButton');
+let decBtn = document.getElementById('decimalButton')
 
 function add(num1, num2) {
     return num1 + num2;
@@ -80,8 +82,8 @@ function backspace() {
 
 }
 
-function roundNum() {
-
+function roundNum(num) {
+    return Math.round(num * 1000) / 1000;
 }
 
 function displayValue(result) {
@@ -261,6 +263,15 @@ divBtn.addEventListener("click", () => {
         clearDisplay();
         clearTemp();
         calcDisplay.textContent = runningTotal;
+    }
+});
+
+decBtn.addEventListener("click", () => {
+    if(decimalFlag == false) {
+        runningTotal = roundNum(runningTotal);
+        displayTotal = runningTotal;
+    } else {
+        return 0;
     }
 });
 //===================Event Listeners=====================
