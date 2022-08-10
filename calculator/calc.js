@@ -62,6 +62,35 @@ function operate(operator, num1, num2) {
     }
 }
 
+function readOperator(str) {
+    let capture = /([+-/\\*])/g
+    let scan = str.match(capture);
+
+    
+        switch(scan) {
+            case "+":
+              return "Sum";
+
+            case "-":
+                return "Diff";
+
+            case "*":
+                return "Prod";
+
+            case "/":
+                 return "Div";
+
+            default:
+                throw "HA GOTTI";
+         }   
+    }
+
+function readNumbers(str) {
+    
+}
+
+
+
 function clearDisplay() {
     displayTotal = "0";
     calcDisplay.textContent = 0;
@@ -194,7 +223,11 @@ zeroBtn.addEventListener("click", function () {
 });
 
 
-addBtn.addEventListener("click", function () {
+
+
+
+// TO DELETE
+/*addBtn.addEventListener("click", function () {
     temp = parseFloat(displayTotal);
     operator = "Sum";
     runningTotal = operate(operator, runningTotal, temp);
@@ -274,5 +307,5 @@ decBtn.addEventListener("click", () => {
     } else {
         return 0;
     }
-});
+});*/
 //===================Event Listeners=====================
