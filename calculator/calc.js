@@ -247,7 +247,9 @@ mulBtn.addEventListener("click", () => {
 });
 
 divBtn.addEventListener("click", () => {
-    if(runningTotal == 0 && displayTotal != 0) {
+    if(runningTotal == 0 && displayTotal == 0) {
+        return 0;
+    } else if(runningTotal == 0 && displayTotal != 0) {
         temp = parseFloat(displayTotal);
         operator = "Div";
         runningTotal = operate(operator, temp, 1);
@@ -268,8 +270,7 @@ divBtn.addEventListener("click", () => {
 
 decBtn.addEventListener("click", () => {
     if(decimalFlag == false) {
-        runningTotal = roundNum(runningTotal);
-        displayTotal = runningTotal;
+        displayTotal += ".";
     } else {
         return 0;
     }
