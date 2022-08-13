@@ -29,6 +29,15 @@
     flex-wrap: wrap;
 }
 
+#prevEquation {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    padding-right: 5px;
+    padding-top: 5px;
+    font-size: 18px;
+}
+
 #display {
     display: flex;
     justify-content: flex-end;
