@@ -11,7 +11,7 @@ let resetScreen = false;
 let firstOperand = '';
 let secondOperand = '';
 
-let zeroBtn = document.getElementById('048Button');
+/*let zeroBtn = document.getElementById('048Button');
 let oneBtn = document.getElementById('049Button');
 let twoBtn = document.getElementById('050Button');
 let threeBtn = document.getElementById('051Button');
@@ -20,7 +20,10 @@ let fiveBtn = document.getElementById('053Button');
 let sixBtn = document.getElementById('054Button');
 let sevenBtn = document.getElementById('055Button');
 let eightBtn = document.getElementById('056Button');
-let nineBtn = document.getElementById('057Button');
+let nineBtn = document.getElementById('057Button'); */
+let numBtn = document.querySelectorAll('[data-number]');
+
+
 let clearBtn = document.getElementById('clearButton');
 let eraseBtn = document.getElementById('eraseButton');
 let addBtn = document.getElementById('additionButton');
@@ -73,7 +76,20 @@ function operate(operator, num1, num2) {
     }
 }
 
-function clearDisplay() {
+function clearScreen() {
+    calcDisplay.textContent = '';
+    resetScreen = false;
+}
+
+function clear() {
+    calcDisplay.textContent = '0';
+    prevEquation.textContent = '';
+    firstOperand = '';
+    secondOperand = '';
+    currentOperation = null;
+}
+
+/*function clearDisplay() {
     displayTotal = "0";
     calcDisplay.textContent = 0;
 }
@@ -87,7 +103,7 @@ function clearAll() {
 
 function clearTemp() {
     temp = 0;
-}
+} */
 
 function backspace() {
 
@@ -125,8 +141,15 @@ function evaluate() {
     currentOperation = null;
 }
 
+function appendNumber(number) {
+    if(calcDisplay.textContent === '0' || resetScreen)
+        clearScreen();
+    calcDisplay.textContent += number;
+}
+
 //===================Event Listeners=====================
-clearBtn.addEventListener("click", () => clearAll());
+clearBtn.addEventListener("click", () => clear());
+
 eraseBtn.addEventListener("click", function () {
     if(displayTotal.length <= 1 ){
         clearDisplay();
@@ -136,7 +159,12 @@ eraseBtn.addEventListener("click", function () {
     calcDisplay.textContent = displayTotal;
 });
 
-oneBtn.addEventListener("click", function () {
+numBtn.forEach((button) =>
+    button.addEventListener('click', () => appendNumber(button.textContent))
+)
+
+
+/*oneBtn.addEventListener("click", function () {
     if(displayTotal == "0" || displayTotal == 0){
         displayTotal = "1";
         return calcDisplay.textContent = displayTotal;
@@ -226,7 +254,7 @@ zeroBtn.addEventListener("click", function () {
     }
     displayTotal += "0";
     calcDisplay.textContent = displayTotal;
-});
+}); */
 
 
 addBtn.addEventListener("click", function () {
