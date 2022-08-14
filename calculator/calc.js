@@ -135,15 +135,47 @@ function appendPoint() {
     calcDisplay.textContent += ".";
 }
 
+function handleKeyboardInput(e) {
+    if (e.key >= 0 && e.key <= 9)
+        appendNumber(e.key);
+    if(e.key === ".")
+        appendPoint();
+    if(e.key === "=" || e.key === "Enter")
+        evaluate();
+    if(e.key === "Backspace")
+        deleteNumber();
+    if(e.key === "Escape")
+        clear();
+    if(e.key === "+" || e.key === "-" || e.key === "*" || e.key === "/")
+        readyOperation(convertOperator(e.key));
+}
+
+function deleteNumber() {
+    calcDisplay.textContent = calcDisplay.textContent
+    .toString()
+    .slice(0, -1)
+}
+
+function convertOperator(keyboardOperator) {
+    if(keyboardOperator === "+")
+        return "+";
+
+    if(keyboardOperator === "-")
+        return "-";
+    
+    if(keyboardOperator === "/")
+        return "/";
+
+    if(keyboardOperator === "*")
+        return "X";
+}
+
 //===================Event Listeners=====================
+window.addEventListener('keydown', handleKeyboardInput);
+
 clearBtn.addEventListener("click", () => clear());
 
-eraseBtn.addEventListener("click", function () {
-    
-    calcDisplay.textContent = calcDisplay.textContent
-        .toString()
-        .slice(0, -1)
-});
+eraseBtn.addEventListener("click", deleteNumber);
 
 numBtn.forEach((button) =>
     button.addEventListener('click', () => appendNumber(button.textContent))
@@ -157,4 +189,6 @@ eqlBtn.addEventListener('click', evaluate);
 
 
 decBtn.addEventListener("click", appendPoint);
+
+
 //===================Event Listeners=====================
