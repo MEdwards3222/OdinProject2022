@@ -6,6 +6,10 @@ let temp = 0;
 let operator = " ";
 let btn = document.querySelector('.Buttons');
 let decimalFlag = false;
+let currentOperation = null;
+let resetScreen = false;
+let firstOperand = '';
+let secondOperand = '';
 
 let zeroBtn = document.getElementById('048Button');
 let oneBtn = document.getElementById('049Button');
@@ -24,7 +28,8 @@ let subBtn = document.getElementById('subtractionButton');
 let mulBtn = document.getElementById('multiplicationButton');
 let divBtn = document.getElementById('divisionButton');
 let eqlBtn = document.getElementById('executeButton');
-let decBtn = document.getElementById('decimalButton')
+let decBtn = document.getElementById('decimalButton');
+let prevEquation = document.getElementById('prevEquation');
 
 function add(num1, num2) {
     return num1 + num2;
@@ -57,7 +62,13 @@ function operate(operator, num1, num2) {
             
 
         case "Div":
-            return divide(num1, num2);
+            if (num2 === 0)
+                return null;
+
+            else return divide(num1, num2);
+
+        default:
+            return null;
             
     }
 }
@@ -88,6 +99,30 @@ function roundNum(num) {
 
 function displayValue(result) {
     calcDisplay.textContent = result;
+}
+
+function readyOperation(operator) {
+    if (currentOperation !== null)
+        evaluate();
+
+    firstOperand = calcDisplay.textContent;
+    currentOperation = operator;
+    prevEquation.textContent = `${firstOperand} ${currentOperation}`;
+    resetScreen = true;
+}
+
+function evaluate() {
+    if(currentOperation === null || resetScreen) 
+        return;
+    if (currentOperation === 'Div' && calcDisplay.textContent === '0'){
+        alert("You can't divide by 0!");
+        return;
+    }
+
+    secondOperand = calcDisplay.textContent;
+    calcDisplay.textContent = roundNum(operate(currentOperation, firstOperand, secondOperand));
+    prevEquation.textContent = `${firstOperand} ${currentOperation} ${secondOperand}`;
+    currentOperation = null;
 }
 
 //===================Event Listeners=====================
