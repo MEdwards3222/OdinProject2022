@@ -122,6 +122,19 @@ function appendNumber(number) {
     calcDisplay.textContent += number;
 }
 
+function appendPoint() {
+    if(resetScreen)
+        clearScreen();
+    
+    if(calcDisplay.textContent === '')
+        calcDisplay.textContent = "0";
+    
+    if(calcDisplay.textContent.includes("."))
+        return;
+    
+    calcDisplay.textContent += ".";
+}
+
 //===================Event Listeners=====================
 clearBtn.addEventListener("click", () => clear());
 
@@ -143,11 +156,5 @@ operatorBtn.forEach((button) =>
 eqlBtn.addEventListener('click', evaluate);
 
 
-decBtn.addEventListener("click", () => {
-    if(decimalFlag == false) {
-        displayTotal += ".";
-    } else {
-        return 0;
-    }
-});
+decBtn.addEventListener("click", appendPoint);
 //===================Event Listeners=====================
