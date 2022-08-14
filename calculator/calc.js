@@ -3,7 +3,6 @@ let calcDisplay = document.querySelector('#display');
 let displayTotal = " ";
 let runningTotal = 0;
 let temp = 0;
-let operator = " ";
 let btn = document.querySelector('.Buttons');
 let decimalFlag = false;
 let currentOperation = null;
@@ -22,6 +21,7 @@ let sevenBtn = document.getElementById('055Button');
 let eightBtn = document.getElementById('056Button');
 let nineBtn = document.getElementById('057Button'); */
 let numBtn = document.querySelectorAll('[data-number]');
+let operatorBtn = document.querySelectorAll('[data-operator]');
 
 
 let clearBtn = document.getElementById('clearButton');
@@ -151,18 +151,27 @@ function appendNumber(number) {
 clearBtn.addEventListener("click", () => clear());
 
 eraseBtn.addEventListener("click", function () {
-    if(displayTotal.length <= 1 ){
+    /*if(displayTotal.length <= 1 ){
         clearDisplay();
         return calcDisplay.textContent = displayTotal;
     }
     displayTotal = displayTotal.slice(0, -1);
-    calcDisplay.textContent = displayTotal;
+    calcDisplay.textContent = displayTotal;*/
+
+    calcDisplay.textContent = calcDisplay.textContent
+        .toString()
+        .slice(0, -1)
 });
 
 numBtn.forEach((button) =>
     button.addEventListener('click', () => appendNumber(button.textContent))
 )
 
+operatorBtn.forEach((button) => 
+    button.addEventListener('click', () => readyOperation(button.textContent))
+)
+
+eqlBtn.addEventListener('click', evaluate);
 
 /*oneBtn.addEventListener("click", function () {
     if(displayTotal == "0" || displayTotal == 0){
@@ -257,7 +266,7 @@ zeroBtn.addEventListener("click", function () {
 }); */
 
 
-addBtn.addEventListener("click", function () {
+/*addBtn.addEventListener("click", function () {
     temp = parseFloat(displayTotal);
     operator = "Sum";
     runningTotal = operate(operator, runningTotal, temp);
@@ -329,7 +338,7 @@ divBtn.addEventListener("click", () => {
         clearTemp();
         calcDisplay.textContent = runningTotal;
     }
-});
+});*/
 
 decBtn.addEventListener("click", () => {
     if(decimalFlag == false) {
