@@ -1,0 +1,14 @@
+:root {
+    --backgroundColor: rgb(10, 10, 10);
+    --textColor: rgba(253, 253, 253, 0.726);
+}
+
+
+html, body {
+    background-color: var(--backgroundColor);
+    height: 100%;
+}
+
+h1 {
+    color: var(--textColor);
+}
