@@ -12,3 +12,8 @@ html, body {
 h1 {
     color: var(--textColor);
 }
+
+#mainCard {
+    border: 1px;
+    border-color: white;
+}
