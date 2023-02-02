@@ -17,3 +17,11 @@ h1 {
     border: 1px;
     border-color: white;
 }
+
+:valid {
+    border-color: green;
+}
+
+:invalid:focus {
+    border-color: red;
+}
